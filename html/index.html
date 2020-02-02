@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="getHelloApiDiv" style="background: aqua;height: 100px;width: 100px"></div>
+ 
+    <script>
+        function ajaxResponse(xhr, successFunction, falseFunction) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.status);
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                        alert("成功");
+                        successFunction();
+                    } else {
+                        alert("失败" + xhr.status);
+                        falseFunction();
+                    }
+                }
+            }
+        }
+        let getApiDiv = document.querySelector('#getHelloApiDiv');
+        let xhr = new XMLHttpRequest();
+        /*getApiDiv.onclick = function () {
+            ajaxResponse(
+                xhr,
+                function () {
+                    let helloText = JSON.parse(xhr.responseText);
+                    getApiDiv.innerText = helloText.msg;
+                }, function () {
+                }
+            );
+            xhr.open('get', 'http://127.0.0.1:8000/blog1/helloapi'); //接口写在这里
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=utf-8');
+            xhr.send(null);
+        };*/
+    </script>
+</body>
+
+</html>
